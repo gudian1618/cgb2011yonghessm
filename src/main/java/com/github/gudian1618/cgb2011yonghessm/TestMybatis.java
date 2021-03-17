@@ -1,5 +1,7 @@
 package com.github.gudian1618.cgb2011yonghessm;
 
+import com.github.gudian1618.cgb2011yonghessm.dao.DoorMapper;
+import com.github.gudian1618.cgb2011yonghessm.pojo.Door;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -7,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @author gudian1618
@@ -29,7 +32,13 @@ public class TestMybatis {
 
     @Test
     public void testFindAll() {
-
+        // 获取DoorMapper接口的子类实例
+        DoorMapper mapper = session.getMapper(DoorMapper.class);
+        // 查询所有门店信息
+        List<Door> list = mapper.findAll();
+        for (Door door : list) {
+            System.out.println(door);
+        }
     }
 
 }
