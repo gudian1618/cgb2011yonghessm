@@ -26,4 +26,8 @@
         select * from tb_door where id=#{id}
     </select>
 
+    <update id="updateById">
+        update tb_door set name=#{name}, tel=#{tel}, addr=#{addr} where id=#{id}
+    </update>
+
 </mapper>

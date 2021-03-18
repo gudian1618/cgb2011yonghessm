@@ -31,4 +31,9 @@ public interface DoorMapper {
      * 4.根据id查询门店信息
      */
     public Door findById(Integer id);
+
+    /**
+     * 5.根据id修改门店系信息
+     */
+    public void updateById(Door door);
 }

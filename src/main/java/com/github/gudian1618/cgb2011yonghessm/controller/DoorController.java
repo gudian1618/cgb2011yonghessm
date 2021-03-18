@@ -42,7 +42,7 @@ public class DoorController {
     /**
      * 2.根据id删除门店信息
      */
-    @RequestMapping("/dooDelete")
+    @RequestMapping("/doorDelete")
     public String doorDelete(Integer id) {
         // 调用DoorMapper中的格局id删除门店信息的方法
         doorMapper.deleteById(id);
@@ -62,13 +62,23 @@ public class DoorController {
     }
 
     /**
-     * 4.修改门店信息
+     * 4.根据id查询门店信息
      */
     @RequestMapping("/doorInfo")
     public String doorInfo(Integer id, Model model) {
         Door door = doorMapper.findById(id);
         model.addAttribute("door", door);
         return "door_update";
+    }
+
+    /**
+     * 5.根据查询出来的id修改门店信息
+     */
+    @RequestMapping("/doorUpdate")
+    public String doorUpdate(Door door) {
+        // 盗用DoorMapper的修改门店信息的方法,根据id查询最新的门店信息
+        doorMapper.updateById(door);
+        return "forward:/doorList";
     }
 
     /**
