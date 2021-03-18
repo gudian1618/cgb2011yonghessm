@@ -4,6 +4,7 @@ import com.github.gudian1618.cgb2011yonghessm.dao.DoorMapper;
 import com.github.gudian1618.cgb2011yonghessm.pojo.Door;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,6 +25,51 @@ public class DoorController {
      */
     @Autowired
     private DoorMapper doorMapper;
+
+    /**
+     * 1.查询所有的门店信息
+     */
+    @RequestMapping("/doorList")
+    public String doorList(Model model) {
+        // 调用DoorMapper的finAll方法
+        List<Door> list = doorMapper.findAll();
+        // 将所有门店信息存入Model中,带到JSP中显示
+        model.addAttribute("list", list);
+        // 跳转到门店列表页面
+        return "door_list";
+    }
+
+    /**
+     * 2.根据id删除门店信息
+     */
+    @RequestMapping("/dooDelete")
+    public String doorDelete(Integer id) {
+        // 调用DoorMapper中的格局id删除门店信息的方法
+        doorMapper.deleteById(id);
+        // 跟新信息后,跳转到查询所有门店的方法,显示最新门店信息
+        return "forward:/doorList";
+    }
+
+    /**
+     * 3.新增门店信息
+     */
+    @RequestMapping("/doorAdd")
+    public String doorAdd(Door door) {
+        // 调用DoorMapper的新增门店的方法,新增一条门店信息
+        doorMapper.add(door);
+        // 更新门店信息后,跳转到查询所有门店的方法,显示最新门店信息
+        return "forward:/doorList";
+    }
+
+    /**
+     * 4.修改门店信息
+     */
+    @RequestMapping("/doorInfo")
+    public String doorInfo(Integer id, Model model) {
+        Door door = doorMapper.findById(id);
+        model.addAttribute("door", door);
+        return "door_update";
+    }
 
     /**
      * 通用的页面跳转方法

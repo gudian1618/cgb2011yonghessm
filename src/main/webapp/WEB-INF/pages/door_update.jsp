@@ -27,7 +27,7 @@
 		<tr>
 			<td width="30%">门店名称</td>
 			<td>
-				<input type="text" name="name"  value="${ door.name }"/>
+				<input type="text" name="name"  value="${ Sdoor.name }"/>
 			</td>
 		</tr>
 		<tr>

@@ -17,4 +17,18 @@ public interface DoorMapper {
      */
     public List<Door> findAll();
 
+    /**
+     * 2.根据id删除门店信息
+     */
+    public void deleteById(Integer id);
+
+    /**
+     * 3.新增门店信息
+     */
+    public void add(Door door);
+
+    /**
+     * 4.根据id查询门店信息
+     */
+    public Door findById(Integer id);
 }
