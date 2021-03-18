@@ -22,7 +22,7 @@ public class TestMybatis {
     private static SqlSession session = null;
     static {
         try {
-            InputStream in = Resources.getResourceAsStream("mybatis/mybatis-config.xml");
+            InputStream in = Resources.getResourceAsStream("mybatis/mybatis-config2.xml");
             SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
             session = factory.openSession(true);
         } catch (Exception e) {
